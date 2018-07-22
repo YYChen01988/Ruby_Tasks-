@@ -87,8 +87,12 @@ def sell_pet_to_customer(pet_shop, pet, customer)
   if pet[:price] > customer[:cash]
     return
   end
-  customer[:pets] << pet[:name]
-  pet_shop[:admin][:pets_sold]+= 1
-  customer[:cash] -= pet[:price]
-  pet_shop[:admin][:total_cash] += pet[:price]
+  # customer[:pets] << pet[:name]
+   add_pet_to_customer(customer, pet[:name])
+  # pet_shop[:admin][:pets_sold]+= 1
+   increase_pets_sold(pet_shop, 1)
+  # customer[:cash] -= pet[:price]
+   remove_customer_cash(customer, pet[:price])
+  # pet_shop[:admin][:total_cash] += pet[:price]
+   add_or_remove_cash(pet_shop, pet[:price])
 end
